@@ -54,6 +54,18 @@ font-family: 'Josefin Sans', sans-serif;*/
     margin-bottom: 10px;
 }
 
+.DBItemSpacing{
+    font-weight: bold;
+}
+
+.heartunique {
+    display: inline-block;
+}
+
+.heart {
+
+}
+
 .input-container{
     display:flex;
     flex-direction: row;

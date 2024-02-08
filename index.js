@@ -42,12 +42,17 @@ addButtonEl.addEventListener('click', function() {
 
         //Create/Declare a variable representing/storing the value of the input field
         let inputValue = inputEl.value;
-        //let fromValue = fromEl.value;
-        //let toValue = toEl.value;
-        inputValue = inputEl.value +
+        let fromValue = fromEl.value;
+        let toValue = toEl.value;
+        
+        const arrayInputObject = { 
+             endorsement: inputValue,
+             from: fromValue,
+             to: toValue
+        }
 
             //Target the retrieved reference branch within the database
-            push(endorsementListInDB, inputValue);          
+            push(endorsementListInDB, arrayInputObject);          
 
             //Clear the User's entered input field value after they've clicked the button
             //to active the function lines above this line that take & enter their value
@@ -87,12 +92,12 @@ onValue(endorsementListInDB, function(snapshot) {
             console.log(currentItem);
 
             //
-            let currentItemKey = currentItem[0];
-            console.log(currentItemKey);
+            //let currentItemKey = currentItem[0];
+            //console.log(currentItemKey);
 
             //
-            let currentItemValue = endorsementDBItemsArray[1];
-            console.log(currentItemValue);
+            //let currentItemValue = endorsementDBItemsArray[1];
+            //console.log(currentItemValue);
             
             //Feed the current iterated mother array position line in the
             //Unique [ ID: [key:value]pair ] line position into the Append 
@@ -127,8 +132,15 @@ function clearEndorseListEl() {
 //Optional commented-out section of code included to be optionally activated 
 //to add easier ability to remove database entries upon click if desired 
 function appendCurrentItemValueToEndorseListEl(item) {
+    //console.log(item);
     let itemKey = item[0];
-    let itemValue = item[1];
+    console.log(itemKey);
+
+
+
+    let itemValue = Object.values(item[1]);
+    console.log(item[1]);
+    console.log(itemValue);
 
     //THIS IS THE CHOP-SHOP WAY OF DOING IT -> UNTESTED YET
     //We are passing in the value into the database but its not being rendered
@@ -140,7 +152,7 @@ function appendCurrentItemValueToEndorseListEl(item) {
 
         //CLEAN WAY BELOW
         let createNewListElement = document.createElement("li");
-        createNewListElement.textContent = itemValue;
+        createNewListElement.innerHTML = `<p class="DBItemSpacing">From: ${itemValue[1]}</p>${itemValue[0]}<p class="DBItemSpacing heartunique">To: ${itemValue[2]}</p><div class="heart">♥</div>`;
 
         let fromValue = fromEl.value;
         let toValue = toEl.value;
